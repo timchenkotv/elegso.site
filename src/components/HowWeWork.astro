@@ -1,0 +1,25 @@
+---
+const steps = [
+  { n: "Шаг 1", t: "Сбор материалов", d: "Договор, платежи, переписка, акты. Определяем «что доказываем» и чем именно." },
+  { n: "Шаг 2", t: "Позиция и расчёты", d: "Юридическая и финансовая модель: проценты, убытки, сальдо, неустойка." },
+  { n: "Шаг 3", t: "Давление и контроль", d: "Иск, обеспечение, заседания, апелляция/кассация, исполнение. Держим темп." },
+];
+---
+<section id="how" class="mx-auto max-w-6xl px-6 py-14">
+  <h2 class="text-xl font-semibold text-slate-50">Как мы работаем</h2>
+  <p class="mt-2 max-w-2xl text-sm text-slate-400">
+    Процесс выстроен под результат: фактура → стратегия → исполнение. С прозрачными шагами и контролем сроков.
+  </p>
+
+  <div class="mt-6 grid gap-4 lg:grid-cols-3">
+    {steps.map((s) => (
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/20 p-5">
+        <div class="inline-flex items-center rounded-full border border-slate-800 bg-slate-950/40 px-3 py-1 text-xs font-semibold text-slate-200">
+          {s.n}
+        </div>
+        <div class="mt-4 text-base font-semibold text-slate-50">{s.t}</div>
+        <div class="mt-2 text-sm leading-relaxed text-slate-400">{s.d}</div>
+      </div>
+    ))}
+  </div>
+</section>

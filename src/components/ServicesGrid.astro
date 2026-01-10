@@ -1,0 +1,59 @@
+---
+const services = [
+  {
+    tag: "Арбитраж",
+    price: "от 150 000 ₽",
+    title: "Договорные споры",
+    desc: "Поставка, подряд, аренда, неустойка, расторжение. Позиция под суд, а не «для галочки».",
+  },
+  {
+    tag: "Лизинг",
+    price: "от 200 000 ₽",
+    title: "Расторжение и сальдо",
+    desc: "Убытки, возврат предмета, 333 ГК, расчёты, экспертизы. Делаем цифры читаемыми для суда.",
+  },
+  {
+    tag: "Взыскание",
+    price: "от 120 000 ₽",
+    title: "Долги и исполнение",
+    desc: "Претензия → иск → обеспечение → ФССП. Держим темп, контроль и доказательственную базу.",
+  },
+];
+---
+<section id="services" class="mx-auto max-w-6xl px-6 py-14">
+  <div class="flex items-end justify-between gap-6">
+    <div>
+      <h2 class="text-xl font-semibold text-slate-50">Ключевые услуги</h2>
+      <p class="mt-2 max-w-2xl text-sm text-slate-400">
+        Мы формируем позицию так, чтобы суду было легко принять её: факты, доказательства, расчёты, причинно-следственная связь.
+      </p>
+    </div>
+    <a href="#contacts" class="hidden text-sm font-semibold text-slate-200 hover:text-amber-300 sm:inline">
+      Получить стратегию →
+    </a>
+  </div>
+
+  <div class="mt-6 grid gap-4 lg:grid-cols-3">
+    {services.map((s) => (
+      <article class="group rounded-2xl border border-slate-800 bg-slate-900/20 p-5 transition hover:bg-slate-900/35">
+        <div class="flex items-center justify-between gap-3">
+          <span class="rounded-full bg-sky-300/90 px-3 py-1 text-xs font-semibold text-slate-950">
+            {s.tag}
+          </span>
+          <span class="text-xs text-slate-400">{s.price}</span>
+        </div>
+
+        <h3 class="mt-4 text-base font-semibold text-slate-50">{s.title}</h3>
+        <p class="mt-2 text-sm leading-relaxed text-slate-400">{s.desc}</p>
+
+        <a href="#contacts" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-slate-200 hover:text-amber-300">
+          Запросить разбор
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </article>
+    ))}
+  </div>
+</section>

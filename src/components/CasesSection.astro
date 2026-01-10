@@ -1,0 +1,69 @@
+---
+const items = [
+  {
+    title: "Лизинг: снижение санкций и корректный расчёт сальдо",
+    desc: "Собрали расчёт, выстроили доказательства и аргументацию так, чтобы суду было удобно принять позицию.",
+  },
+  {
+    title: "Взыскание: обеспечительные меры на ранней стадии",
+    desc: "Сохранили активы и повысили вероятность реального исполнения решения.",
+  },
+  {
+    title: "Договор: спор по качеству/объёму работ",
+    desc: "Упаковали переписку, экспертизы и акты в непротиворечивую модель фактов для суда.",
+  },
+];
+---
+<section id="cases" class="mx-auto max-w-6xl px-6 py-14">
+  <div class="grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-start">
+    <div>
+      <h2 class="text-xl font-semibold text-slate-50">Кейсы (пример оформления)</h2>
+      <p class="mt-2 max-w-2xl text-sm text-slate-400">
+        Здесь будут реальные кейсы (без раскрытия конфиденциальных деталей): задача → тактика → результат.
+      </p>
+
+      <div class="mt-6 grid gap-3">
+        {items.map((i) => (
+          <div class="flex gap-3 rounded-2xl border border-slate-800 bg-slate-900/20 p-4">
+            <span class="mt-0.5 grid h-6 w-6 place-items-center rounded-full border border-amber-400/40 bg-amber-400/10 text-amber-200">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <div>
+              <div class="text-sm font-semibold text-slate-50">{i.title}</div>
+              <div class="mt-1 text-sm text-slate-400">{i.desc}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <aside class="rounded-3xl border border-slate-800 bg-slate-900/20 p-6">
+      <div class="text-sm font-semibold text-slate-50">Почему выбирают нас</div>
+      <p class="mt-2 text-sm leading-relaxed text-slate-400">
+        Клиенты покупают уверенность. Мы говорим языком суда: факты, доказательства, цифры, сроки.
+        Никаких «обещаний победы» — только управляемые сценарии.
+      </p>
+
+      <div class="mt-5 grid gap-3">
+        <div class="rounded-2xl border border-slate-800 bg-slate-950/40 p-4">
+          <div class="text-sm font-semibold text-slate-50">1) Диагностика</div>
+          <div class="mt-1 text-xs text-slate-400">быстро выявляем узкие места и риски</div>
+        </div>
+        <div class="rounded-2xl border border-slate-800 bg-slate-950/40 p-4">
+          <div class="text-sm font-semibold text-slate-50">2) Стратегия</div>
+          <div class="mt-1 text-xs text-slate-400">план, сроки, бюджет, альтернативы</div>
+        </div>
+        <div class="rounded-2xl border border-slate-800 bg-slate-950/40 p-4">
+          <div class="text-sm font-semibold text-slate-50">3) Исполнение</div>
+          <div class="mt-1 text-xs text-slate-400">процесс под ключ: от претензии до ФССП</div>
+        </div>
+      </div>
+
+      <a href="#contacts" class="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-amber-400 px-4 py-2 text-sm font-semibold text-slate-950 hover:brightness-110">
+        Получить стратегию
+      </a>
+    </aside>
+  </div>
+</section>

@@ -1,0 +1,153 @@
+---
+const nav = [
+  { label: "Услуги", href: "#services" },
+  {
+    label: "Практики",
+    href: "#services",
+    children: [
+      { label: "Арбитражные споры", href: "#services" },
+      { label: "Лизинг и выкупные схемы", href: "#services" },
+      { label: "Взыскание и исполнение", href: "#services" },
+    ],
+  },
+  { label: "Кейсы", href: "#cases" },
+  { label: "Как работаем", href: "#how" },
+  { label: "Контакты", href: "#contacts" },
+];
+---
+
+<header class="sticky top-0 z-50 border-b border-slate-800/70 bg-slate-950/70 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-6 py-4">
+    <a href="/" class="group inline-flex items-center gap-3">
+      <span class="grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br from-amber-300/90 to-sky-300/40 text-slate-950 shadow-sm">
+        <span class="text-sm font-black tracking-tight">E</span>
+      </span>
+      <span class="leading-tight">
+        <span class="block text-sm font-semibold tracking-[0.22em] text-slate-50">ELEGSO</span>
+        <span class="block text-xs text-slate-400">Арбитраж · Коммерческие споры · Стратегия</span>
+      </span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Главная навигация">
+      {nav.map((item) => (
+        item.children ? (
+          <div class="relative group">
+            <a
+              class="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-slate-200 hover:bg-slate-900/50 hover:text-slate-50"
+              href={item.href}
+              aria-haspopup="true"
+            >
+              {item.label}
+              <svg class="h-4 w-4 opacity-80" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+
+            <div
+              class="invisible absolute left-0 top-full mt-3 w-[340px] -translate-y-1 rounded-2xl border border-slate-800 bg-slate-950/95 p-2 opacity-0 shadow-2xl transition
+                     group-hover:visible group-hover:translate-y-0 group-hover:opacity-100"
+              role="menu"
+              aria-label="Практики"
+            >
+              <div class="grid gap-1">
+                {item.children.map((c) => (
+                  <a
+                    href={c.href}
+                    class="group/item flex gap-3 rounded-xl border border-transparent p-3 hover:border-slate-800 hover:bg-slate-900/40"
+                    role="menuitem"
+                  >
+                    <span class="grid h-9 w-9 place-items-center rounded-xl border border-slate-800 bg-slate-900/40 text-slate-200">
+                      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M4 7h16M7 4v6M17 4v6M6 20h12a2 2 0 0 0 2-2V9H4v9a2 2 0 0 0 2 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      </svg>
+                    </span>
+                    <span class="min-w-0">
+                      <span class="block text-sm font-semibold text-slate-50">{c.label}</span>
+                      <span class="block text-xs text-slate-400">
+                        Стратегия, доказательства, расчёты — под стандарт суда.
+                      </span>
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <a class="rounded-xl px-3 py-2 text-sm text-slate-200 hover:bg-slate-900/50 hover:text-slate-50" href={item.href}>
+            {item.label}
+          </a>
+        )
+      ))}
+    </nav>
+
+    <!-- Desktop actions -->
+    <div class="hidden items-center gap-2 lg:flex">
+      <a href="tel:+74951234567" class="rounded-xl border border-slate-800 bg-slate-900/30 px-3 py-2 text-sm text-slate-200 hover:bg-slate-900/60">
+        +7 (495) 123-45-67
+      </a>
+      <a href="#contacts" class="rounded-xl bg-gradient-to-r from-amber-300 to-amber-400 px-4 py-2 text-sm font-semibold text-slate-950 hover:brightness-110">
+        Получить стратегию
+      </a>
+    </div>
+
+    <!-- Mobile button -->
+    <button
+      id="mbtn"
+      class="inline-flex items-center justify-center rounded-xl border border-slate-800 bg-slate-900/30 px-3 py-2 text-sm text-slate-100 hover:bg-slate-900/60 lg:hidden"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mmenu"
+    >
+      Меню
+      <svg class="ml-2 h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile panel -->
+  <div id="mmenu" class="hidden border-t border-slate-800/70 bg-slate-950/95 lg:hidden">
+    <div class="mx-auto max-w-6xl px-6 py-4">
+      <div class="grid gap-1">
+        <a class="rounded-xl px-3 py-2 text-sm text-slate-200 hover:bg-slate-900/50" href="#services">Услуги</a>
+
+        <details class="rounded-xl border border-slate-800 bg-slate-900/20 p-2">
+          <summary class="cursor-pointer list-none rounded-lg px-2 py-2 text-sm text-slate-100 hover:bg-slate-900/40">
+            Практики
+          </summary>
+          <div class="mt-2 grid gap-1 pl-2">
+            <a class="rounded-lg px-3 py-2 text-sm text-slate-300 hover:bg-slate-900/40" href="#services">Арбитражные споры</a>
+            <a class="rounded-lg px-3 py-2 text-sm text-slate-300 hover:bg-slate-900/40" href="#services">Лизинг и выкупные схемы</a>
+            <a class="rounded-lg px-3 py-2 text-sm text-slate-300 hover:bg-slate-900/40" href="#services">Взыскание и исполнение</a>
+          </div>
+        </details>
+
+        <a class="rounded-xl px-3 py-2 text-sm text-slate-200 hover:bg-slate-900/50" href="#cases">Кейсы</a>
+        <a class="rounded-xl px-3 py-2 text-sm text-slate-200 hover:bg-slate-900/50" href="#how">Как работаем</a>
+        <a class="rounded-xl px-3 py-2 text-sm text-slate-200 hover:bg-slate-900/50" href="#contacts">Контакты</a>
+
+        <div class="mt-3 grid gap-2">
+          <a href="tel:+74951234567" class="rounded-xl border border-slate-800 bg-slate-900/30 px-3 py-2 text-sm text-slate-200 hover:bg-slate-900/60">
+            +7 (495) 123-45-67
+          </a>
+          <a href="#contacts" class="rounded-xl bg-gradient-to-r from-amber-300 to-amber-400 px-4 py-2 text-center text-sm font-semibold text-slate-950 hover:brightness-110">
+            Получить стратегию
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    const btn = document.getElementById("mbtn");
+    const menu = document.getElementById("mmenu");
+    if (btn && menu) {
+      btn.addEventListener("click", () => {
+        const isOpen = !menu.classList.contains("hidden");
+        menu.classList.toggle("hidden");
+        btn.setAttribute("aria-expanded", String(!isOpen));
+      });
+    }
+  </script>
+</header>

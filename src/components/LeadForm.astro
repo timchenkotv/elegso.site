@@ -1,0 +1,51 @@
+---
+---
+<section id="contacts" class="mx-auto max-w-6xl px-6 py-14">
+  <div class="rounded-3xl border border-slate-800 bg-slate-900/20 p-6 sm:p-8">
+    <div class="grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-start">
+      <div>
+        <h2 class="text-xl font-semibold text-slate-50">Запросить разбор спора</h2>
+        <p class="mt-2 max-w-xl text-sm leading-relaxed text-slate-400">
+          Оставьте контакты — уточним детали и предложим следующий шаг: претензия, иск, обеспечение,
+          переговоры или мирное урегулирование.
+        </p>
+
+        <div class="mt-6 grid gap-3 rounded-2xl border border-slate-800 bg-slate-950/40 p-5">
+          <div class="text-sm font-semibold text-slate-50">Контакты</div>
+          <div class="text-sm text-slate-400">
+            <a class="text-slate-200 hover:text-amber-300" href="tel:+74951234567">+7 (495) 123-45-67</a>
+            <span class="mx-2 text-slate-600">•</span>
+            <a class="text-slate-200 hover:text-amber-300" href="mailto:office@elegso.ru">office@elegso.ru</a>
+          </div>
+          <div class="text-xs text-slate-500">
+            Демо-форма: сейчас не отправляет на сервер. Потом подключим отправку (Telegram / почта / свой API).
+          </div>
+        </div>
+      </div>
+
+      <form class="grid gap-3" onsubmit="return false;">
+        <label class="grid gap-1">
+          <span class="text-xs text-slate-400">Имя / Компания</span>
+          <input class="rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-amber-400/40"
+                 placeholder="ООО «Ромашка» / Иванов И.И." />
+        </label>
+
+        <label class="grid gap-1">
+          <span class="text-xs text-slate-400">Телефон или email</span>
+          <input class="rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-amber-400/40"
+                 placeholder="+7… / office@…" />
+        </label>
+
+        <label class="grid gap-1">
+          <span class="text-xs text-slate-400">Коротко о споре</span>
+          <textarea rows="5" class="rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-amber-400/40"
+                    placeholder="Суть, сумма, стадия, сроки…"></textarea>
+        </label>
+
+        <button class="mt-2 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-amber-300 to-amber-400 px-5 py-3 text-sm font-semibold text-slate-950 hover:brightness-110">
+          Отправить
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

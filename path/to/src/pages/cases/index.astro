@@ -1,0 +1,96 @@
+---
+const cases = [
+  {
+    title: "Кейс Лизинг",
+    category: "Лизинг",
+    summary: "Пример кейса в области лизинга.",
+    tags: ["лизинг", "финансы"],
+    slug: "leasing-case"
+  },
+  // Добавьте еще два примера для раздела Лизинг
+];
+
+const casesVoz = [
+  {
+    title: "Кейс Взыскание",
+    category: "Взыскание",
+    summary: "Пример кейса в области взыскания.",
+    tags: ["взыскание", "суд"],
+    slug: "voz-case"
+  },
+  // Добавьте еще два примера для раздела Взыскание
+];
+
+const casesSpor = [
+  {
+    title: "Кейс Споры",
+    category: "Договорные споры",
+    summary: "Пример кейса в области договорных споров.",
+    tags: ["споры", "договор"],
+    slug: "spor-case"
+  },
+  // Добавьте еще два примера для раздела Споры
+];
+---
+
+<div class="mx-auto max-w-6xl px-4 py-8">
+  <h1 class="text-3xl font-bold">Кейсы</h1>
+  <p class="mt-2 text-gray-500">Все кейсы конфиденциальны и не могут быть опубликованы без согласия сторон.</p>
+
+  <!-- Лизинг -->
+  <div class="my-8">
+    <h2 class="text-xl font-semibold">Лизинг</h2>
+    {cases.map((caseItem) => (
+      <article class="mt-4 flex items-center gap-4">
+        <img src="/path/to/placeholder.jpg" alt="" class="w-32 h-32 object-cover rounded-lg"/>
+        <div>
+          <a href={`/cases/${caseItem.slug}`} class="text-xl font-semibold hover:underline">{caseItem.title}</a>
+          <p class="mt-1 text-gray-500">{caseItem.summary}</p>
+          <ul class="flex gap-2 mt-2">
+            {caseItem.tags.map((tag) => (
+              <li class="bg-slate-300 p-1 rounded-lg">{tag}</li>
+            ))}
+          </ul>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <!-- Взыскание -->
+  <div class="my-8">
+    <h2 class="text-xl font-semibold">Взыскание</h2>
+    {casesVoz.map((caseItem) => (
+      <article class="mt-4 flex items-center gap-4">
+        <img src="/path/to/placeholder.jpg" alt="" class="w-32 h-32 object-cover rounded-lg"/>
+        <div>
+          <a href={`/cases/${caseItem.slug}`} class="text-xl font-semibold hover:underline">{caseItem.title}</a>
+          <p class="mt-1 text-gray-500">{caseItem.summary}</p>
+          <ul class="flex gap-2 mt-2">
+            {caseItem.tags.map((tag) => (
+              <li class="bg-slate-300 p-1 rounded-lg">{tag}</li>
+            ))}
+          </ul>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <!-- Договорные споры -->
+  <div class="my-8">
+    <h2 class="text-xl font-semibold">Договорные споры</h2>
+    {casesSpor.map((caseItem) => (
+      <article class="mt-4 flex items-center gap-4">
+        <img src="/path/to/placeholder.jpg" alt="" class="w-32 h-32 object-cover rounded-lg"/>
+        <div>
+          <a href={`/cases/${caseItem.slug}`} class="text-xl font-semibold hover:underline">{caseItem.title}</a>
+          <p class="mt-1 text-gray-500">{caseItem.summary}</p>
+          <ul class="flex gap-2 mt-2">
+            {caseItem.tags.map((tag) => (
+              <li class="bg-slate-300 p-1 rounded-lg">{tag}</li>
+            ))}
+          </ul>
+        </div>
+      </article>
+    ))}
+  </div>
+</div>

@@ -1,0 +1,60 @@
+---
+const cases = [
+  {
+    slug: "leasing-case",
+    title: "Кейс Лизинг",
+    category: "Лизинг",
+    summary: "Пример кейса в области лизинга.",
+    facts: ["Факт 1", "Факт 2"],
+    strategy: "Стратегия решения проблемы.",
+    result: "Результат работы над проектом.",
+    docs: [
+      { title: "Документ 1", url: "/path/to/doc1.pdf" },
+      { title: "Документ 2", url: "/path/to/doc2.pdf" }
+    ]
+  },
+  // Добавьте еще два примера для других кейсов
+];
+
+const caseItem = cases.find((caseItem) => caseItem.slug === params.slug);
+---
+
+<div class="mx-auto max-w-6xl px-4 py-8">
+  <div class="flex items-center gap-4 mb-8">
+    <a href="/cases" class="text-blue-500 hover:underline">Назад к кейсам</a>
+    <span aria-current="page">{caseItem.title}</span>
+  </div>
+
+  <!-- Блок "Суть" -->
+  <section class="my-8">
+    <h2 class="text-xl font-semibold">Суть проекта</h2>
+    <p>{caseItem.summary}</p>
+  </section>
+
+  <!-- Блок "Тактика" -->
+  <section class="my-8">
+    <h2 class="text-xl font-semibold">Тактика и стратегия</h2>
+    <ul class="list-disc list-inside">
+      {caseItem.facts.map((fact) => (
+        <li>{fact}</li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- Блок "Результат" -->
+  <section class="my-8">
+    <h2 class="text-xl font-semibold">Результат</h2>
+    <p>{caseItem.result}</p>
+  </section>
+
+  <!-- Фрагменты решения -->
+  <section class="my-8">
+    <h2 class="text-xl font-semibold">Фрагменты решения суда</h2>
+    {caseItem.docs.map((doc) => (
+      <div class="mt-4 flex items-center gap-4">
+        <a href={doc.url} target="_blank" rel="noopener noreferrer" class="block w-32 h-32 bg-slate-300 rounded-lg hover:bg-slate-400 transition duration-150"></a>
+      </div>
+    ))}
+  </section>
+
+</div>

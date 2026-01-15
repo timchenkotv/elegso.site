@@ -1,43 +1,78 @@
-# Astro Starter Kit: Minimal
+# ELEGSO.site — Astro сайт (источник истины)
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Этот репозиторий — **единый источник** сайта ELEGSO на Astro.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Как я работаю (правильная цепочка)
+1) Редактирую сайт локально на Mac (папка `~/Projects/elegso.site`)
+2) Проверяю локально (`npm run dev` или `npm run preview`)
+3) Коммичу и пушу в GitHub — это “истина” и история версий
+4) На сервере `web-node` запускаю деплой-скрипт: он тянет GitHub, собирает и обновляет сайт
 
-## 🚀 Project Structure
+**Цель:** Mac → GitHub → web-node (одна команда) → сайт обновился.
 
-Inside of your Astro project, you'll see the following folders and files:
+---
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Технологии
+- Astro (v5.x)
+- Node.js + npm
+- Статический сайт (build в `./dist`)
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+---
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Структура проекта
 
-Any static assets, like images, can be placed in the `public/` directory.
+### Важно где что лежит
+- `src/pages/` — страницы (роутинг по именам файлов)
+  - `src/pages/index.astro` — главная
+  - `src/pages/cases/index.astro` — список кейсов
+  - `src/pages/cases/[slug].astro` — страница кейса по slug
+- `src/components/` — UI-компоненты (Header/Hero/Services/Team/Footer и т.д.)
+- `src/layouts/` — лейауты (обёртки страниц)
+- `src/data/ru/home.json` — контент главной (если используется в компонентах)
+- `src/styles/global.css` — глобальные стили
+- `public/` — статические ассеты (фото/иконки), доступны как `/...`
+- `astro.config.mjs` — конфигурация Astro
+- `package.json` / `package-lock.json` — зависимости и команды
 
-## 🧞 Commands
+---
 
-All commands are run from the root of the project, from a terminal:
+## Что НЕ должно попадать в репозиторий
+Это мусор/кэш/артефакты сборки:
+- `node_modules/`
+- `dist/`
+- `.astro/`
+- папки экспорта браузера `*_files/` (например от “Save Page As…”)
+- любые baseline/backup файлы вида `.native-baseline.*`, `*.bak*`
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Если такое появилось — удалить из git и добавить в `.gitignore`.
 
-## 👀 Want to learn more?
+---
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Команды (локально)
+Все команды выполняются из корня проекта:
+
+- `npm install` — установить зависимости
+- `npm run dev` — dev-сервер (обычно http://127.0.0.1:4321)
+- `npm run build` — сборка в `./dist`
+- `npm run preview` — предпросмотр сборки
+
+---
+
+## Правки через ИИ (как давать задачи в чат)
+Когда ты (ИИ) вносишь изменения:
+1) Сначала назови **какие файлы** будешь менять
+2) Меняй **минимально необходимое**
+3) Не добавляй мусор в репозиторий (см. список выше)
+4) Контент искать в `src/pages/` и `src/data/`
+5) После правок — убедиться, что `npm run build` проходит
+
+---
+
+## Деплой на сервер (концепция)
+На `web-node` должен быть скрипт, который делает:
+1) `git pull` из GitHub
+2) `npm ci`
+3) `npm run build`
+4) синхронизирует `dist/` в каталог, который отдаёт nginx
+5) (опционально) рестарт nginx
+

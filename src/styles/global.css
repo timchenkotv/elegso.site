@@ -1,1 +1,5 @@
-@import "tailwindcss";
+/* Global entry point (clean)
+   - legacy styles live in ./legacy.css
+   - later we can switch to Tailwind here without breaking everything
+*/
+@import "./legacy.css";

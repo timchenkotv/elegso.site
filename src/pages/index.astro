@@ -1,4 +1,5 @@
 ---
+import Layout from "../layouts/Layout.astro";
 import home from "../data/ru/home.json";
 import TopbarNative from "../components/TopbarNative.astro";
 import HeroNative from "../components/HeroNative.astro";
@@ -12,9 +13,14 @@ import FooterNative from "../components/FooterNative.astro";
  */
 ---
 
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ELEGSO — Арбитраж и коммерческие споры</title><meta name="description" content="Юридические услуги для бизнеса: арбитраж, взыскание, лизинг, убытки, стратегия процесса. Строго. Быстро. Предсказуемо."><link rel="stylesheet" href="ELEGSO — Арбитраж и коммерческие споры_files/index.D_a85OAw.css">
-</head>
+<Layout>
+  <Fragment slot="head">
+    <title>ELEGSO — Арбитраж и коммерческие споры</title>
+    <meta name="description" content="Юридические услуги для бизнеса: арбитраж, взыскание, лизинг, убытки, стратегия процесса. Строго. Быстро. Предсказуемо." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </Fragment>
+
+
 
 <TopbarNative contacts={home.contacts} />  <main> <HeroNative contacts={home.contacts} />  <ServicesNative />  <TeamNative /><section class="section" id="cases" data-astro-cid-23yevxlj=""> <div class="container" data-astro-cid-23yevxlj=""> <h3 data-astro-cid-23yevxlj="">Кейсы (пример оформления)</h3> <ul class="list" data-astro-cid-23yevxlj=""> <li class="li" data-astro-cid-23yevxlj=""> <span class="check" aria-hidden="true" data-astro-cid-23yevxlj="">✓</span> <div data-astro-cid-23yevxlj=""> <b data-astro-cid-23yevxlj="">Лизинг: снижение санкций и корректный расчёт сальдо</b> <span data-astro-cid-23yevxlj="">Собрали расчёт, сформировали доказательства, выстроили аргументацию под суд.</span> </div> </li><li class="li" data-astro-cid-23yevxlj=""> <span class="check" aria-hidden="true" data-astro-cid-23yevxlj="">✓</span> <div data-astro-cid-23yevxlj=""> <b data-astro-cid-23yevxlj="">Взыскание: обеспечительные меры на ранней стадии</b> <span data-astro-cid-23yevxlj="">Сохранили активы, увеличили вероятность реального исполнения решения.</span> </div> </li><li class="li" data-astro-cid-23yevxlj=""> <span class="check" aria-hidden="true" data-astro-cid-23yevxlj="">✓</span> <div data-astro-cid-23yevxlj=""> <b data-astro-cid-23yevxlj="">Договор: спор по качеству/объёму работ</b> <span data-astro-cid-23yevxlj="">Распаковали технику, экспертизу и письма так, чтобы суду было легко принять позицию.</span> </div> </li> </ul> </div> </section>  <section class="section" id="how" data-astro-cid-tgsqgwjn=""> <div class="container" data-astro-cid-tgsqgwjn=""> <h3 data-astro-cid-tgsqgwjn="">Как мы работаем</h3> <div class="grid3" data-astro-cid-tgsqgwjn=""> <div class="service" data-astro-cid-tgsqgwjn=""> <div class="top" data-astro-cid-tgsqgwjn=""><span class="badge" data-astro-cid-tgsqgwjn="">Шаг 1</span></div> <h4 data-astro-cid-tgsqgwjn="">Сбор материалов</h4> <p data-astro-cid-tgsqgwjn="">Договор, платежи, переписка, акты. Определяем «что доказываем» и чем именно.</p> </div><div class="service" data-astro-cid-tgsqgwjn=""> <div class="top" data-astro-cid-tgsqgwjn=""><span class="badge" data-astro-cid-tgsqgwjn="">Шаг 2</span></div> <h4 data-astro-cid-tgsqgwjn="">Позиция и расчёты</h4> <p data-astro-cid-tgsqgwjn="">Формируем юридическую и финансовую модель: проценты, убытки, сальдо, неустойка.</p> </div><div class="service" data-astro-cid-tgsqgwjn=""> <div class="top" data-astro-cid-tgsqgwjn=""><span class="badge" data-astro-cid-tgsqgwjn="">Шаг 3</span></div> <h4 data-astro-cid-tgsqgwjn="">Давление и контроль</h4> <p data-astro-cid-tgsqgwjn="">Иск, обеспечение, заседания, апелляция/кассация, исполнение. Держим темп.</p> </div> </div> <details class="process" data-astro-cid-tgsqgwjn=""> <summary class="process-sum" data-astro-cid-tgsqgwjn=""> <span class="process-title" data-astro-cid-tgsqgwjn="">Как устроен процесс работы</span> <span class="process-sub" data-astro-cid-tgsqgwjn="">Бережливое юридическое производство и контроль качества на каждом этапе</span> <span class="chev" aria-hidden="true" data-astro-cid-tgsqgwjn=""></span> </summary> <div class="process-body" data-astro-cid-tgsqgwjn=""> <p class="lead" data-astro-cid-tgsqgwjn="">
 Обращаясь к нам, вы получаете не «одного юриста на задачу», а отлаженную систему юридических процессов защиты имущественных интересов.

@@ -1,4 +1,9 @@
-# ELEGSO.site (Astro)
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.." || exit 1
+
+python3 -c 'from pathlib import Path
+text = """# ELEGSO.site (Astro)
 
 Статический сайт ELEGSO на Astro (output: static).
 Рабочий цикл: правка → npm run build → dist готов к деплою.
@@ -37,3 +42,7 @@
 Цель правки: …
 Где править: src/pages/… / src/components/… / src/styles/… / public/…
 Ограничения: не трогать лишнее, сохранить стиль, npm run build обязателен.
+"""
+Path("README.md").write_text(text, encoding="utf-8")
+print("OK: README.md regenerated")'
+

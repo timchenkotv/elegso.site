@@ -1,10 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+TARGET="src/components/CasesSection.astro"
+BACKUP="$TARGET.bak.pretty.$(date +%Y-%m-%d_%H-%M-%S)"
+cp -a "$TARGET" "$BACKUP"
+
+cat > "$TARGET" <<'ASTRO'
 ---
 const themes = [
   {
     id: "leasing-penalty",
-    title: "Лизинг: судебные проекты по возврату и уменьшению неустойки (штрафов, пеней)",
+    title: "Лизинг: возврат и уменьшение неустойки",
     lead:
-      "В пользу лизингополучателей взыскали излишне удержанную неустойку; уменьшили размер санкций и требований лизингодателей. Защитили экономику выкупного лизинга: неустойка не может превращаться в скрытую цену договора.",
+      "В пользу лизингополучателя взыскали излишне удержанную неустойку; уменьшили размер санкций и требований лизингодателя. Защитили экономику выкупного лизинга: неустойка не может превращаться в скрытую цену договора.",
     cases: [
       {
         id: "a40-117474-2023",
@@ -17,7 +26,7 @@ const themes = [
         removed: "4 027 766,99 ₽",
         claim: "10 817 373,68 ₽",
         title:
-          "Взыскали 4,75 млн. ₽ и отказ лизингодателя от 4,03 млн ₽ встречных требований",
+          "Возврат 4,75 млн ₽ и отказ лизингодателя от 4,03 млн ₽ встречных требований",
         teaser:
           "Лизингодатель списывал неустойку внутри платежей и попытался удержать выкуп. Мы довели спор до кассации — и развернули ситуацию в пользу бизнеса.",
         story:
@@ -25,9 +34,7 @@ const themes = [
 
 Параллельно появилась «скрытая механика»: вместо судебного взыскания лизингодатель стал списывать неустойку внутри поступающих платежей, лишая возможности уменьшить её по статье 333 ГК РФ через суд. Когда подошёл момент выкупа, бизнесу предъявили новые требования и фактически попытались удержать имущество до оплаты «дополнительной» неустойки.
 
-Мы доказали: в таких правоотношениях неустойка утрачивает стимулирующую функцию и превращается в способ обогащения — значит нужен судебный контроль соразмерности (ст. 333 ГК РФ), проверка реальных последствий и возврат излишне удержанного. Две инстанции заняли формальный подход, но кассация отменила акты и вернула дело на новое рассмотрение.
-
-Итог — мировое: отказ лизингодателя от встречных требований 4,03 млн ₽ и возврат 4,75 млн ₽ лизингополучателю как несоразмерно последствиям списанная неустойка.`,
+Мы доказали: в таких правоотношениях неустойка утрачивает стимулирующую функцию и превращается в способ обогащения — значит нужен судебный контроль соразмерности (ст. 333 ГК РФ), проверка реальных последствий и возврат излишне удержанного. Две инстанции заняли формальный подход, но кассация отменила акты и вернула дело на новое рассмотрение. Итог — мировое: отказ от встречных требований и возврат 4,75 млн ₽.`,
         pdfs: [
           { id: "p4", label: "Мировое (определение)", date: "21.04.2025", file: "/cases/A40-117474-2023_20250421_Opredelenie.pdf" },
           { id: "p3", label: "Кассация", date: "03.12.2024", file: "/cases/A40-117474-2023_20241203_Reshenija_i_postanovlenija.pdf" },
@@ -98,29 +105,26 @@ const themes = [
                             <div><span>Дело</span><b>{c.caseNo}</b></div>
                             <div><span>Суд</span><b>{c.court}</b></div>
                             <div><span>Судья</span><b>{c.judge}</b></div>
-                            <div><span>Клиент (лизингополучатель)</span><b>ООО &quot;Транспортный сервис&quot;</b></div>
-                            <div><span>Ответчик (лизингодатель)</span><b>ООО &quot;Мейджор Лизинг&quot;</b></div>
-
-                            <div><span>Длительность процесса</span><b>{c.duration}</b></div>
-                            <div><span>Размер исковых требований</span><b>{c.claim}</b></div>
-                            <div><span>Взыскано в пользу лизингополучателя</span><b class="accent">{c.recovered}</b></div>
-                            <div><span>Снято встречных требований</span><b class="accent">{c.removed}</b></div>
-                            <div><span>Сумма защиты имущественного интереса</span><b class="danger">8 777 766,99 ₽</b></div>
-
-                            
+                            <div><span>Длительность</span><b>{c.duration}</b></div>
+                            <div><span>Взыскано</span><b class="accent">{c.recovered}</b></div>
+                            <div><span>Снято требований</span><b class="accent">{c.removed}</b></div>
+                            <div><span>Цена иска</span><b>{c.claim}</b></div>
                           </div>
                         </div>
 
                         <div class="casesx-card">
-                          <div class="casesx-cap">Краткая история</div>
+                          <div class="casesx-cap">Короткая история</div>
                           <div class="casesx-story">{c.story}</div>
+
+                          <div class="casesx-actions">
+                            <a class="casesx-btn primary" href={c.detailsHref}>Читать ход процесса подробно</a>
+                            <a class="casesx-btn" href="#contacts">Обсудить похожую ситуацию</a>
+                          </div>
 
                           <div class="casesx-fine">
                             Справа — материалы по делу. Выберите документ в ленте, откройте в новой вкладке или скачайте.
                           </div>
                         </div>
-                        
-                        
                       </div>
 
                       <div class="casesx-right">
@@ -146,12 +150,6 @@ const themes = [
                         </div>
                       </div>
                     </div>
-                    
-                    <div class="casesx-custombar">
-                      <a class="casesx-btn primary" href={c.detailsHref}>Читать ход процесса подробно</a>
-                      <a class="casesx-btn" href="#contacts">Обсудить похожую или вашу ситуацию</a>
-                    </div>
-
                   </div>
                 </div>
               </details>
@@ -163,75 +161,39 @@ const themes = [
   </div>
 
   <script is:inline>
-(() => {
-  const init = () => {
-    // click delegation (works after HMR)
-    document.addEventListener("click", (e) => {
-      const btn = e.target && e.target.closest ? e.target.closest("[data-pdf-tab]") : null;
-      if (!btn) return;
+    (() => {
+      const init = () => {
+        document.querySelectorAll("[data-pdf-tab]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const caseId = btn.getAttribute("data-case");
+            const file = btn.getAttribute("data-file");
+            const label = btn.getAttribute("data-label");
+            if (!caseId || !file || !label) return;
 
-      e.preventDefault();
-      e.stopPropagation();
+            document
+              .querySelectorAll("[data-pdf-tab][data-case=\\"" + caseId + "\\"]")
+              .forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
 
-      const caseId = btn.getAttribute("data-case");
-      const file = btn.getAttribute("data-file");
-      const label = btn.getAttribute("data-label");
-      if (!caseId || !file || !label) return;
+            const t = document.querySelector("[data-pdf-title=\\"" + caseId + "\\"]");
+            if (t) t.textContent = label;
 
-      document
-        .querySelectorAll("[data-pdf-tab][data-case=\"" + caseId + "\"]")
-        .forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
+            const frame = document.querySelector("[data-pdf-frame=\\"" + caseId + "\\"]");
+            if (frame) frame.setAttribute("src", file + "#page=1&toolbar=0&navpanes=0");
 
-      const t = document.querySelector("[data-pdf-title=\"" + caseId + "\"]");
-      if (t) t.textContent = label;
+            const open = document.querySelector("[data-pdf-open=\\"" + caseId + "\\"]");
+            if (open) open.setAttribute("href", file);
 
-      const frame = document.querySelector("[data-pdf-frame=\"" + caseId + "\"]");
-      if (frame) frame.setAttribute("src", file + "#page=1&toolbar=0&navpanes=0");
+            const dl = document.querySelector("[data-pdf-download=\\"" + caseId + "\\"]");
+            if (dl) dl.setAttribute("href", file);
+          });
+        });
+      };
 
-      const open = document.querySelector("[data-pdf-open=\"" + caseId + "\"]");
-      if (open) open.setAttribute("href", file);
-
-      const dl = document.querySelector("[data-pdf-download=\"" + caseId + "\"]");
-      if (dl) dl.setAttribute("href", file);
-    }, true);
-
-    // keyboard navigation (ArrowLeft/ArrowRight)
-    document.addEventListener("keydown", (e) => {
-      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
-
-      const el = document.activeElement;
-      if (!el) return;
-
-      const tab = el.closest ? el.closest("[data-pdf-tab]") : null;
-      if (!tab) return;
-
-      const caseId = tab.getAttribute("data-case");
-      if (!caseId) return;
-
-      const list = Array.from(document.querySelectorAll("[data-pdf-tab][data-case=\"" + caseId + "\"]"));
-      const idx = list.indexOf(tab);
-      if (idx < 0) return;
-
-      e.preventDefault();
-      const nextIdx = (e.key === "ArrowRight")
-        ? Math.min(list.length - 1, idx + 1)
-        : Math.max(0, idx - 1);
-
-      const next = list[nextIdx];
-      if (!next) return;
-
-      next.focus();
-      next.click();
-    });
-  };
-
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
-  else init();
-
-  document.addEventListener("astro:page-load", init);
-})();
-</script>
+      if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+      else init();
+    })();
+  </script>
   <style is:inline>
     /* Свой стиль, но на переменных сайта: выглядит "родным" независимо от data-astro-cid */
     .casesx { padding: 34px 0; }
@@ -263,7 +225,7 @@ const themes = [
     .casesx-tab .h { font-size:12px; font-weight:700; color:#e8eefcf2; }
     .casesx-tab .d { font-size:12px; color:#b7c3ddbf; margin-top:6px; }
 
-    .casesx-grid { display:grid; grid-template-columns: 1.05fr .95fr; gap: 14px; align-items: start; }
+    .casesx-grid { display:grid; grid-template-columns: 1.05fr .95fr; gap: 14px; align-items: stretch; }
     @media(max-width:980px){ .casesx-grid{ grid-template-columns: 1fr; } }
 
     .casesx-left { display:grid; gap: 12px; }
@@ -278,13 +240,12 @@ const themes = [
     .casesx-kv span { color:#b7c3ddbf; font-size:12px; }
     .casesx-kv b { color:#e8eefcf2; font-weight: 750; }
     .casesx-kv b.accent { color: var(--accent); }
-    .casesx-kv b.danger { color: #ff6b6b; font-weight: 850; }
 
     .casesx-story { margin-top: 10px; color:#b7c3ddeb; line-height:1.45; white-space: pre-line; }
     .casesx-actions { margin-top: 12px; display:flex; gap:10px; flex-wrap:wrap; }
     .casesx-fine { margin-top: 10px; color:#b7c3ddbf; font-size:12px; }
 
-    .casesx-right { display:grid; gap:10px; align-content: start; justify-content: start; }
+    .casesx-right { display:grid; gap:10px; }
     .casesx-top { display:flex; justify-content: space-between; gap:10px; align-items:center; flex-wrap:wrap; }
     .casesx-topBtns { display:flex; gap:10px; flex-wrap:wrap; }
 
@@ -294,7 +255,6 @@ const themes = [
     .casesx-btn { padding:10px 14px; border-radius:14px; border:1px solid rgba(198,161,90,.35); background:#c6a15a1a; color: var(--text); cursor:pointer; font:inherit; display:inline-flex; align-items:center; gap:10px; white-space:nowrap; }
     .casesx-btn:hover { background:#c6a15a24; border-color:#c6a15a8c; transform: translateY(-1px); }
     .casesx-btn.primary { border-color:#c6a15a99; background: linear-gradient(135deg,#c6a15af2,#7fd3ff40); color:#0b1220f2; font-weight:650; }
-    .casesx-custombar { margin-top: 22px; margin-bottom: 10px; display: flex; gap: 16px; justify-content: flex-start; align-items: center; border-radius: 18px; background: linear-gradient(90deg, #0b122085, #c6a15a12 98%); box-shadow: 0 4px 20px #0003; padding: 18px 22px 16px; }
   </style>
 </section>
   <style is:inline>
@@ -328,7 +288,7 @@ const themes = [
     .casesx-tab .h { font-size:12px; font-weight:700; color:#e8eefcf2; }
     .casesx-tab .d { font-size:12px; color:#b7c3ddbf; margin-top:6px; }
 
-    .casesx-grid { display:grid; grid-template-columns: 1.05fr .95fr; gap: 14px; align-items: start; }
+    .casesx-grid { display:grid; grid-template-columns: 1.05fr .95fr; gap: 14px; align-items: stretch; }
     @media(max-width:980px){ .casesx-grid{ grid-template-columns: 1fr; } }
 
     .casesx-left { display:grid; gap: 12px; }
@@ -343,13 +303,12 @@ const themes = [
     .casesx-kv span { color:#b7c3ddbf; font-size:12px; }
     .casesx-kv b { color:#e8eefcf2; font-weight: 750; }
     .casesx-kv b.accent { color: var(--accent); }
-    .casesx-kv b.danger { color: #ff6b6b; font-weight: 850; }
 
     .casesx-story { margin-top: 10px; color:#b7c3ddeb; line-height:1.45; white-space: pre-line; }
     .casesx-actions { margin-top: 12px; display:flex; gap:10px; flex-wrap:wrap; }
     .casesx-fine { margin-top: 10px; color:#b7c3ddbf; font-size:12px; }
 
-    .casesx-right { display:grid; gap:10px; align-content: start; justify-content: start; }
+    .casesx-right { display:grid; gap:10px; }
     .casesx-top { display:flex; justify-content: space-between; gap:10px; align-items:center; flex-wrap:wrap; }
     .casesx-topBtns { display:flex; gap:10px; flex-wrap:wrap; }
 
@@ -361,3 +320,7 @@ const themes = [
     .casesx-btn.primary { border-color:#c6a15a99; background: linear-gradient(135deg,#c6a15af2,#7fd3ff40); color:#0b1220f2; font-weight:650; }
   </style>
 </section>
+ASTRO
+
+echo "OK: pretty CasesSection prepared"
+SH

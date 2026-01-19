@@ -28,3 +28,7 @@ dist/
 .aider.input.history
 .aider.tags.cache.v4/
 .backup/
+.backup-local/2026-01-18_00-37-27/repo.tgz git add .gitignore
+
+# local backups
+.backup-local/
